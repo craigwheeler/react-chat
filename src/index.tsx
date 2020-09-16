@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import ReactChat from './components/ReactChat';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ReactChat />
   </React.StrictMode>,
   document.getElementById('root')
 );
