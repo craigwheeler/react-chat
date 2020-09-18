@@ -6,12 +6,12 @@ Realtime chat app with websockets using Node.js, Express and Socket.io
 
 ## Getting Started
 
-#### To run the development server cd into client and server folders and install all dependencies
+#### To start the development server install all dependencies at the root and client folder
 
-#### cd into the server dir and run the following to start the local dev environment
+#### Once installed run the following to start the local dev environment
 
 ```
-npm run dev
+npm start
 ```
 
 ## Connecting to a shared chat
