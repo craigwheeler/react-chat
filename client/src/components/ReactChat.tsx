@@ -3,7 +3,8 @@ import qs from 'qs';
 import io from 'socket.io-client';
 import styled from 'styled-components';
 
-const socket = io.connect('http://127.0.0.1:8000');
+// const socket = io.connect('http://127.0.0.1:8000');
+const socket = io.connect();
 
 const Messages = () => {
   // Get username and chatId from URL
