@@ -11,7 +11,7 @@ Realtime chat app with websockets using Node.js, Express and Socket.io
 #### Once installed run the following to start the local dev environment
 
 ```
-npm start
+npm run dev
 ```
 
 ## Connecting to a shared chat
