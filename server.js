@@ -13,7 +13,7 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, "../")));
 
 const botName = "Chatbot";
-const welcomeMsg = "Welcome to the chat!";
+const welcomeMsg = "Some awesome message about joining. Welcome to the chat!";
 
 // Run when client connects
 io.on("connection", (socket) => {
@@ -25,13 +25,14 @@ io.on("connection", (socket) => {
     // Welcome current user
     socket.emit("message", formatMessage(botName, welcomeMsg));
 
-    // Broadcast when a user connects
-    socket.broadcast
-      .to(user.chatId)
-      .emit(
-        "message",
-        formatMessage(botName, `${user.username} has joined the chat`)
-      );
+    // TODO: Broadcast when a user connects
+    // causing useEffect to fire repeatedly
+    // socket.broadcast
+    //   .to(user.chatId)
+    //   .emit(
+    //     "message",
+    //     formatMessage(botName, `${user.username} has joined the chat`)
+    //   );
   });
 
   // Listen for chatMessage

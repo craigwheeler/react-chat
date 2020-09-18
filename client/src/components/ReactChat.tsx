@@ -1,20 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './ReactChat.css';
 import qs from 'qs';
 import io from 'socket.io-client';
 
-const ReactChat = () => {
+const socket = io.connect('http://127.0.0.1:8000');
+
+const Messages = () => {
   // Get username and chatId from URL
   const { username, chatId } = qs.parse(window.location.search, {
     ignoreQueryPrefix: true
   });
+  const [messages, setMessages] = useState<any>([]);
+  const msgRef = useRef<HTMLDivElement>(document.createElement('div'));
 
-  const socket = io.connect('http://127.0.0.1:8000');
+  const renderMessages = () =>
+    messages.map((item: any, key: any) => (
+      <div className="message" key={key}>
+        <p className="meta">
+          {item.username}: <span> {item.time}</span>
+        </p>
+        <p ref={msgRef} className="text">
+          {item.text}
+        </p>
+      </div>
+    ));
 
+  const scrollToBottom = () => {
+    msgRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    // Message from server
+    socket.on('message', (msg: any) => {
+      setMessages((message: any) => [...message, msg]);
+    });
+  }, []);
+
+  useEffect(() => {
+    // Join chatroom
+    socket.emit('joinRoom', { username, chatId });
+  }, [chatId, username]);
+
+  useEffect(() => {
+    if (!messages.length) return;
+    scrollToBottom();
+  }, [messages]);
+
+  return (
+    <main className="chat-main">
+      <div className="chat-messages">{renderMessages()}</div>
+    </main>
+  );
+};
+
+const Input = () => {
   const onSubmit = (e: any) => {
-    // // Message submit
     e.preventDefault();
-    // Get message text
     const msg = e.target.elements.msg.value.trim();
     if (!msg) return;
     // Emit message to server
@@ -24,29 +65,21 @@ const ReactChat = () => {
     e.target.elements.msg.focus();
   };
 
-  useEffect(() => {
-    // Join chatroom
-    socket.emit('joinRoom', { username, chatId });
-    // Message from server
-    socket.on('message', (message: any) => {
-      console.log('output message: ', message);
-      // outputMessage(message);
-      // Scroll down
-      // chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
-  }, [chatId, socket, username]);
+  return (
+    <div className="chat-form-container">
+      <form id="chat-form" onSubmit={(e) => onSubmit(e)}>
+        <input id="msg" type="text" placeholder="Type your message..." required />
+        <button className="btn">Send</button>
+      </form>
+    </div>
+  );
+};
 
+const ReactChat = () => {
   return (
     <div className="chat-container">
-      <main className="chat-main">
-        <div className="chat-messages"></div>
-      </main>
-      <div className="chat-form-container">
-        <form id="chat-form" onSubmit={(e) => onSubmit(e)}>
-          <input id="msg" type="text" placeholder="Type your message..." required />
-          <button className="btn">Send</button>
-        </form>
-      </div>
+      <Messages />
+      <Input />
     </div>
   );
 };
