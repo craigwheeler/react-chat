@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import './ReactChat.css';
 import qs from 'qs';
 import io from 'socket.io-client';
+import styled from 'styled-components';
 
 const socket = io.connect('http://127.0.0.1:8000');
 
@@ -77,11 +77,74 @@ const Input = () => {
 
 const ReactChat = () => {
   return (
-    <div className="chat-container">
+    <ChatContainer>
       <Messages />
       <Input />
-    </div>
+    </ChatContainer>
   );
 };
 
 export default ReactChat;
+
+const ChatContainer = styled.div`
+  background: #fff;
+  overflow: hidden;
+  .btn {
+    cursor: pointer;
+    padding: 5px 15px;
+    background: var(--light-color);
+    color: var(--dark-color-a);
+    border: 0;
+    font-size: 17px;
+  }
+
+  .chat-header {
+    background: var(--dark-color-a);
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .chat-messages {
+    padding: 30px;
+    height: calc(100vh - 40px);
+    overflow-y: scroll;
+    .message {
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: var(--light-color);
+      border-radius: 5px;
+      overflow-wrap: break-word;
+      .meta {
+        font-size: 12px;
+        font-weight: bold;
+        color: var(--dark-color-b);
+        opacity: 0.7;
+        margin-bottom: 7px;
+        span {
+          color: #777;
+        }
+      }
+      .text {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .chat-form-container {
+    border-top: 1px solid rgb(232, 232, 232);
+    form {
+      display: flex;
+    }
+    input[type='text'] {
+      width: 100%;
+      padding: 12px 14px;
+      outline: 0;
+      border: 0;
+    }
+  }
+`;
