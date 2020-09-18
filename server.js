@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // Set static folder
-app.use(express.static(path.join(__dirname, "../")));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 const botName = "Chatbot";
 const welcomeMsg = "Some awesome message about joining. Welcome to the chat!";
