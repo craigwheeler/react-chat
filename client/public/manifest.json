@@ -1,6 +1,6 @@
 {
-  "short_name": "React ReactChat",
-  "name": "Create React ReactChat Sample",
+  "short_name": "ReactChat",
+  "name": "ReactChat",
   "icons": [
     {
       "src": "favicon.ico",
