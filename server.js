@@ -52,14 +52,13 @@ io.on("connection", (socket) => {
     // Welcome current user
     socket.emit("message", formatMessage(botName, welcomeMsg));
 
-    // TODO: Broadcast when a user connects
-    // causing useEffect to fire repeatedly
-    // socket.broadcast
-    //   .to(user.chatId)
-    //   .emit(
-    //     "message",
-    //     formatMessage(botName, `${user.username} has joined the chat`)
-    //   );
+    // Broadcast when a user connects
+    socket.broadcast
+      .to(user.chatId)
+      .emit(
+        "message",
+        formatMessage(botName, `${user.username} has joined the chat`)
+      );
   });
 
   // Listen for chatMessage
