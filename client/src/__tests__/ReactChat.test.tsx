@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '@testing-library/react';
 import ReactChat from '../components/ReactChat';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ReactChat />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('React Chat', () => {
+  it('renders without crashing', () => {
+    const element_tree = render(<ReactChat />).container;
+    expect(element_tree).toMatchSnapshot();
+  });
 });

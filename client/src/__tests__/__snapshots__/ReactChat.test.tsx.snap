@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React Chat renders without crashing 1`] = `
+<div>
+  <div
+    class="sc-bdnylx jWOIGI"
+  >
+    <main
+      class="chat-main"
+    >
+      <div
+        class="chat-messages"
+      />
+    </main>
+    <div
+      class="chat-form-container"
+    >
+      <form
+        id="chat-form"
+      >
+        <input
+          id="msg"
+          placeholder="Type your message..."
+          required=""
+          type="text"
+        />
+        <button
+          class="btn"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;

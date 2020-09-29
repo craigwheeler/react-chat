@@ -9,7 +9,8 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "npm test --prefix client"
   },
   "dependencies": {
     "@types/socket.io": "^2.1.11",
