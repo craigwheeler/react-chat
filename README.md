@@ -1,6 +1,6 @@
 # react-chat
 
-Realtime anonymous chat app with websockets using Node.js, Express and Socket.io
+Realtime anonymous chat with websockets using Node.js, Express and Socket.io
 
 ![react-chat screenshot](client/src/assets/react-chat.png)
 
