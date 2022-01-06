@@ -2,7 +2,7 @@
 
 Realtime anonymous chat with websockets using Node.js, Express and Socket.io
 
-![react-chat screenshot](client/src/assets/react-chat.png)
+![react-chat screenshot](client/src/assets/react-chat.gif)
 
 ## Getting Started
 
@@ -20,7 +20,13 @@ The chat uses query string parameters to connect to a shared chat.
 To connect add params for **username** and **chatId** to the url where **chatId** is the shared instance of the chat
 
 ```
-http://[BaseURL]/?username=McCracken&chatId=123456
+http://[BaseURL]/?username=[userName]&chatId=[chatId]
+```
+
+## Demo
+
+```
+https://browser-chat.herokuapp.com/?username=User1&chatId=123456
 ```
 
 ## Tooling
